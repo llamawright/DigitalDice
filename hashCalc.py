@@ -182,14 +182,8 @@ def statements(s):
     assigns = []
     for sment in ss:
         assigns.append(statement(sment))
-    for assign in assigns:
-        print( 'to:', assign[0], 'from:', assign[1])
     # process the returned values
-#    for assign in assigns:
-#        if assign[0] =='output':
-#            print('output =', eval(assign[1]))
-#        else:
-#            globals()[assign[0]] = eval(assign[1])
+    # no processing at this stage
     return assigns
 
 
