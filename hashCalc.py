@@ -179,8 +179,17 @@ def express(s):
 def statements(s):
     s = s.replace(' ', '')
     ss = s.split(';')
+    sss = []
     assigns = []
     for sment in ss:
+        if "@" in sment:
+            parts = sment.split("@")
+            many = int(express(parts[0]))
+            for i in range(many):
+                sss.append(parts[1])
+        else:
+            sss.append(sment)
+    for sment in sss:
         assigns.append(statement(sment))
     # process the returned values
     # no processing at this stage

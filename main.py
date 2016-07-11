@@ -115,16 +115,25 @@ class MainForm(BoxLayout):
             self.stash()
             self.isProgram = False
         else:
+            if self.ids[index].code.strip() == "":
+                return
             self.code = self.ids[index].code
             self.ids.t0.text = self.code
             self.dorolls()
 
     def dorolls(self):
         '''process the statements'''
+        if self.ids.t0.text.strip() == "":
+            self.ids.t0.text = self.code
+        else:
+            self.code = self.ids.t0.text
         # for this application fold all to lower case.
-        self.code = self.code.lower()
+        self.code = self.code.lower().strip()
+        if self.code == "":
+            return
         assigns = statements(self.code)
         curOP = 0 # current output set to first one
+        print assigns
         for ass in assigns:
             if ass[0] == 'output':
                 # destined for screen
