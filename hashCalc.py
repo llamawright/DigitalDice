@@ -237,7 +237,8 @@ if __name__ == '__main__':
             print('bye.')
         else:
             z1 = statements(z)
-            print()
+            for p in z1:
+                print( "{}: {}".format(p[0], eval(p[1])))
 
 
 
