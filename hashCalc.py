@@ -22,32 +22,32 @@ import random
 # underscore so that they are not used inadvertently
 
 
-def d(n):
+def dIcE(n):
     '''generate and return a random number 1 thru n'''
     return random.randint(1, n)
 
 
-def r(m, n):
-    '''generate m d(n)s and sum them'''
+def rOlL(m, n):
+    '''generate m D(n)s and sum them'''
     t = 0
     for i in range(m):
-        t += d(n)
+        t += dIcE(n)
     return t
 
 
 def rollStat(kind=0):
     if kind == 0:
         stats = [0, 0, 0]
-        stats = [d(6) for x in stats]
+        stats = [D(6) for x in stats]
     elif kind == 1:
         stats = [0, 0, 0, 0]
-        stats = [d(6) for x in stats]
+        stats = [D(6) for x in stats]
         stats.remove(min(stats))
     elif kind == 2:
         stats = [0, 0, 0]
-        stats = [d(6) for x in stats]
-        stats = [d(6) if x < 5 else x for x in stats]
-        stats = [d(6) if x < 4 else x for x in stats]
+        stats = [D(6) for x in stats]
+        stats = [D(6) if x < 5 else x for x in stats]
+        stats = [D(6) if x < 4 else x for x in stats]
     else:
         stats = [0, 0, 0]
     return sum(stats)
@@ -57,7 +57,7 @@ def rollStats(kind=0):
     stats = [0, 0, 0, 0, 0, 0]
     stats = [rollStat(kind) for x in stats]
     if stats[0] == 18:
-        stats[0] = stats[0] + d(100) / 1000.0
+        stats[0] = stats[0] + D(100) / 1000.0
     return stats
 
 
@@ -74,7 +74,7 @@ def add(a, b):
 # look for expression before the hash
 # if no such expression found - substitute # with d
 # else
-# find beginning of expression and insert r(
+# find beginning of expression and insert R(
 # now substitute #( with a comma
 # completed
 # If any more hashes?  Then do again
@@ -160,11 +160,11 @@ def express(s):
         # Now make the substitutions necessary
         aft += 1    # point to first character of inclusion, if any.
         if p == aft:
-            s = s[:p] + 'd' + s[p + 1:]
+            s = s[:p] + 'dIcE' + s[p + 1:]
         else:
             # Modify later in string first else it will change addresses
             s = s[:p] + ',' + s[p + 2:]
-            s = s[:aft] + 'r(' + s[aft:]
+            s = s[:aft] + 'rOlL(' + s[aft:]
 
         #end of loop process for this # is there another?
         p = s.find('#')

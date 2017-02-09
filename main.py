@@ -9,7 +9,7 @@ from kivy.animation import Animation
 from kivy.core.audio import SoundLoader
 
 from json import loads, dumps
-from hashCalc import d, r, statements
+from hashCalc import dIcE, rOlL, statements
 
 class MainForm(BoxLayout):
 
@@ -27,7 +27,7 @@ class MainForm(BoxLayout):
                     color=[1,1,1,1]
                     ))
             self.anim[i] += Animation(
-                    duration=0.5,
+                    duration=0.75,
                     color=[0,0.7,0.7,1]
                     )
         self.recover()
@@ -66,7 +66,7 @@ class MainForm(BoxLayout):
 
 
     def dice(self, n):
-        return str(d(n))
+        return str(dIcE(n))
 
     def roll(self, widget):
         '''roll a simple number'''
@@ -74,7 +74,7 @@ class MainForm(BoxLayout):
         self.howMany = 1
 	self.wasTen = False
         n = int(widget.text[1:])
-        value = str(r(k, n))
+        value = str(rOlL(k, n))
         position = widget.dx
         self.display(value, position)
 
@@ -96,9 +96,9 @@ class MainForm(BoxLayout):
         if not keep:
             self.ids.t0.text = ''
 
-        sound = SoundLoader.load('affirmative.wav')
-        if sound:
-            sound.play()
+#        sound = SoundLoader.load('affirmative.wav')
+#        if sound:
+#            sound.play()
 
     def macro(self, id ):
         '''execute a program button'''
@@ -123,6 +123,7 @@ class MainForm(BoxLayout):
 
     def dorolls(self):
         '''process the statements'''
+        self.ids.msg.text = ""
         if self.ids.t0.text.strip() == "":
             self.ids.t0.text = self.code
         else:
@@ -133,7 +134,6 @@ class MainForm(BoxLayout):
             return
         assigns = statements(self.code)
         curOP = 0 # current output set to first one
-        print assigns
         for ass in assigns:
             if ass[0] == 'output':
                 # destined for screen
@@ -153,7 +153,11 @@ class MainForm(BoxLayout):
                 else:
                     lvalue = ass[0]
                     rvalue = ass[1]
-                    globals()[lvalue] = eval(rvalue)
+                    try:
+                        tj = eval(rvalue)
+                        globals()[lvalue] = tj
+                    except Exception as e:
+                        print "-->", repr(e)
 
     def display(self, value, position):
         index = 's'+str(position)

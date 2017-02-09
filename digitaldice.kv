@@ -20,9 +20,15 @@
     BoxLayout:
         size_hint_y: 0.4
         Label:
+            size_hint_x: 4
+        Label:
+            size_hint_x: 2
             text: "D i g i a l   D i c e"
             color: 0.5, 0, 0.5, 1
             font_size: '25sp'
+        Label:
+            id: msg
+            size_hint_x: 4
     BoxLayout:
         size_hint_y: 0.4
         Label:
@@ -31,7 +37,7 @@
             size_hint: 0.1, 0.7
         TextInput:
             id: t0
-            text: "enter here to program the top buttons"
+            text: ""
             font_size: '16sp'
             size_hint: 0.6, 0.7
             background_color: 0.5, 0.5, 0.5, 1
